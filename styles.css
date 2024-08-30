@@ -1,0 +1,103 @@
+/* custom.css */
+.bg-custom-gray{
+    background-color: #D3D3D3;
+}
+
+.custom-search-input {
+    background-color: #d3d3d3f6 !important;
+}
+            
+
+.custom-search-button{
+    border-color: black !important;
+    color:rgb(0, 0, 0) !important;
+}
+
+.custom-search-button:hover {
+    background-color: black !important; 
+    border:none !important;
+    color:white !important;
+}
+
+.custom-button{
+    background-color: black !important;
+    color:white !important;
+    border:none;
+    padding: 10px 20px;
+    border-radius:4px;
+    font-size:16px;
+    cursor: pointer;
+}
+
+.custom-view-button{
+    border-color:black;
+    color:rgb(0,0,0);
+    padding:10px 20px;
+    border-radius:4px;
+    font-size:16px;
+}
+
+.custom-view-button:hover{
+    background-color: black;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:4px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.cart-badge{
+    position:absolute;
+    top:-5px;
+    right:-10px;
+    background-color: red;
+    color:white;
+    border-radius:50%;
+    padding:3px 6px;
+    font-size:12px;
+    line-height:1;
+    min-width:20px;
+    text-align:center;
+}
+
+.sign-up-link{
+    color: #696969 !important;
+    transition: color 0.36 ease !important;
+}
+
+.sign-up-link:hover{
+    color: #000000 !important;
+}
+
+.card-img-top{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}
+
+/* css */
+.logo{
+    width:10%;
+    height:10%;
+}
+
+
+
+/* .homePageContainer {
+    position: relative;
+    width: 100vw; 
+    height: 75vh; 
+    overflow: hidden; 
+
+}
+
+.homePageImage {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+} */
+
