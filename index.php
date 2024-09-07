@@ -29,6 +29,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
             <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
             <li class="nav-item position-relative">
@@ -173,7 +174,7 @@
 
 
     <!-- last-child -->
-    <div class="bg-black text-white p-3 text-center mt-2">
+    <div class="bg-dark text-white p-3 text-center mt-2">
     <p>All rights reserved &#169 Designed by Bipasna 2024</p>
    </div>
   </div>
