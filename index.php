@@ -16,7 +16,7 @@
 <body>
   <!-- Navbar -->
   <div class="container-fluid p-0">
-    <div class="container-fluid sticky-top p-0">
+    <div class="container-fluid  p-0">
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
         <img src="./images/logo.png" alt="logo" class="logo" />
@@ -53,7 +53,7 @@
     </nav>
 
     <!-- Second-child -->
-    <nav class="navbar navbar-expand-lg bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
       <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
         <li class="nav-item">
           <a href="#" class="nav-link text-white">Welcome Guest</a>

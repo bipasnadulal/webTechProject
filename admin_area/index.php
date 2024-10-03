@@ -17,11 +17,11 @@
     <!-- navbar -->
      <div class="container-fluid p-0">
         <!-- first-child -->
-        <nav class="navbar navbar-expand-lg sticky-top">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <img src="../images/logo.png" alt="logo" class="logo">
                 <nav class="navbar navbar-expand-lg ">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ">
                         <li class="nav-item">
                             <a href="" class="nav-link">Welcome Admin</a>
                         </li>
