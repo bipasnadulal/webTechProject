@@ -1,3 +1,6 @@
+<?php
+include("../database/connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +33,16 @@
             <div class="form-outline mb-4 w-50 m-auto">
                 <select name="product_categories" id="product_category" class="form-select">
                     <option value="">Select a Category</option>
-                    <option value="men">Men</option>
-                    <option value="women">Women</option>
-                    <option value="kids">Kids</option>
+                    <!-- php-code -->
+                     <?php
+                        $select_query="Select * from `categories`";
+                        $result_query=mysqli_query($conn, $select_query);
+                        while($row=mysqli_fetch_assoc ($result_query)){
+                            $category_title=$row['category_title'];
+                            $category_id=$row ['category_id'];
+                            echo "<option value='$category_id'>$category_title</option>";
+                        }
+                     ?>
                 </select>
             </div>
             <div class="form-outline mb-4 w-50 m-auto">
