@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-12 bg-dark p-0">
                 <div class="button text-center my-2">
-                    <button class="mx-2"><a href="" class="nav-link text-dark bg-light my-1">Insert Products</a></button>
+                    <button class="mx-2"><a href="insert_product.php" class="nav-link text-dark bg-light my-1">Insert Products</a></button>
                     <button class="mx-2"><a href="" class="nav-link text-dark bg-light my-1">View Products</a></button>
                     <button class="mx-2"><a href="index.php?insert_category" class="nav-link text-dark bg-light my-1">Insert Categories</a></button>
                     <button class="mx-2"><a href="" class="nav-link text-dark bg-light my-1">View Categories</a></button>
@@ -54,7 +54,7 @@
         </div>
 
         <!-- fourth-child  -->
-         <div class="container my-5">
+         <div class="container my-3">
             <?php
             if(isset($_GET['insert_category'])){
                 include('insert_categories.php');
