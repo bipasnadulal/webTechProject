@@ -88,89 +88,39 @@
       <div class="col-md-12">
         <!-- products -->
          <div class="row">
-        <div class="col-md-3">
-          <div class="card">
-            <img src="./images/NaviforceNF8003.jpeg" class="card-img-top" alt="NaviforceWatch">
-            <div class="card-body">
-              <h5 class="card-title">NaviforceNF8003</h5>
-              <p class="card-text">Naviforce NF8003 is a sleek, durable watch featuring a dual display, water resistance, and an elegant stainless steel band.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
+          <!-- fetching products -->
+          <?php
+            include("database/connect.php");
+            $select_query="Select * from `products` order by rand() limit 0,8";
+            $result_query=mysqli_query($conn, $select_query);
+            while($row=mysqli_fetch_assoc($result_query)){
+              $product_id=$row['product_id'];
+              $product_title=$row['product_title'];
+              $product_description=$row['product_description'];
+              $product_keywords=$row['product_keywords'];
+              $product_image=$row['product_image'];
+              $product_price=$row['product_price'];
+              $category_id=$row['category_id'];
+              echo "<div class='col-md-3'>
+          <div class='card'>
+            <img src='./admin_area/product_images/$product_image' class='card-img-top' alt='$product_title'>
+            <div class='card-body'>
+              <h5 class='card-title'>$product_title</h5>
+              <p class='card-text'>$product_description</p>
+              <a href='#' class='btn custom-button'>Add to Cart</a>
+              <a href='#' class='btn custom-view-button'>View More</a>
             </div>
           </div>
-          <div class="card mt-2">
-            <img src="./images/NaviforceNF8003.jpeg" class="card-img-top" alt="NaviforceWatch">
-            <div class="card-body">
-              <h5 class="card-title">NaviforceNF8003</h5>
-              <p class="card-text">Naviforce NF8003 is a sleek, durable watch featuring a dual display, water resistance, and an elegant stainless steel band.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
+          </div>";
+            }
+          ?>
+        
+
+          <!-- row-end -->
         </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img src="./images/SeacroftWaffle.jpg" class="card-img-top" alt="SeacroftWaffle Watch">
-            <div class="card-body">
-              <h5 class="card-title">SeacroftWaffle</h5>
-              <p class="card-text">Seacroft Waffle is a stylish and casual watch with a textured dial, comfortable strap, and reliable quartz movement.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
-          <div class="card mt-2">
-            <img src="./images/NaviforceNF8003.jpeg" class="card-img-top" alt="NaviforceWatch">
-            <div class="card-body">
-              <h5 class="card-title">NaviforceNF8003</h5>
-              <p class="card-text">Naviforce NF8003 is a sleek, durable watch featuring a dual display, water resistance, and an elegant stainless steel band.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img src="./images/shinola.jpg" class="card-img-top" alt="Shinola Watch">
-            <div class="card-body">
-              <h5 class="card-title">Shinola - Men's Leather Strap Watch</h5>
-              <p class="card-text">Shinola Men's Leather Strap Watch: stylish, durable, and timelessly elegant design.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
-          <div class="card mt-2">
-            <img src="./images/NaviforceNF8003.jpeg" class="card-img-top" alt="NaviforceWatch">
-            <div class="card-body">
-              <h5 class="card-title">NaviforceNF8003</h5>
-              <p class="card-text">Naviforce NF8003 is a sleek, durable watch featuring a dual display, water resistance, and an elegant stainless steel band.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            <img src="./images/longinesSpirit2.jpg" class="card-img-top" alt="longinesSpirit Watch">
-            <div class="card-body">
-              <h5 class="card-title">Longines Spirit</h5>
-              <p class="card-text">The Longines Spirit watch blends heritage with modern technology, featuring precise Swiss movement and a sleek, elegant design.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
-          <div class="card mt-2">
-            <img src="./images/NaviforceNF8003.jpeg" class="card-img-top" alt="NaviforceWatch">
-            <div class="card-body">
-              <h5 class="card-title">NaviforceNF8003</h5>
-              <p class="card-text">Naviforce NF8003 is a sleek, durable watch featuring a dual display, water resistance, and an elegant stainless steel band.</p>
-              <a href="#" class="btn custom-button">Add to Cart</a>
-              <a href="#" class="btn custom-view-button">View More</a>
-            </div>
-          </div>
-        </div>
+        <!-- col-end -->
         </div>
       </div>
-    </div>
 
 
     <!-- last-child -->
