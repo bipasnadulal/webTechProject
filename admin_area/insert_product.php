@@ -1,11 +1,11 @@
 <?php
 include("../database/connect.php");
 if(isset($_POST['insert_product'])){
-    $product_title=$_POST['product_title'];
-    $product_description=$_POST['product_des'];
-    $product_keywords=$_POST['product_keyword'];
-    $product_category=$_POST['product_category'];
-    $product_price=$_POST['product_price'];
+    $product_title=mysqli_real_escape_string($conn, $_POST['product_title']);
+    $product_description=mysqli_real_escape_string($conn, $_POST['product_des']);
+    $product_keywords=mysqli_real_escape_string($conn, $_POST['product_keyword']);
+    $product_category=mysqli_real_escape_string($conn, $_POST['product_category']);
+    $product_price=mysqli_real_escape_string($conn, $_POST['product_price']);
 
     //accessing image
     $product_image=$_FILES['product_image']['name'];
