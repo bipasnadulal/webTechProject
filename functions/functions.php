@@ -4,6 +4,7 @@ include("./database/connect.php");
 //getting products
 function getProducts(){
     global $conn;
+    if(!isset($_GET['category'])){
     $select_query="Select * from `products` order by rand() limit 0,8";
             $result_query=mysqli_query($conn, $select_query);
             while($row=mysqli_fetch_assoc($result_query)){
@@ -26,6 +27,7 @@ function getProducts(){
           </div>
           </div>";
             }
+          }
 }
 
 //get unique categories
@@ -34,8 +36,12 @@ function getUniqueCategories(){
 
   if(isset($_GET['category'])){
     $category_id=$_GET['category'];
-  $select_query="Select * from `products` where category_id=$category_id";
+    $select_query="Select * from `products` where category_id=$category_id";
           $result_query=mysqli_query($conn, $select_query);
+          $num_of_rows=mysqli_num_rows($result_query);
+          if($num_of_rows==0){
+            echo "<h2 class='text-center'>No stock for this category</h2>";
+          }
           while($row=mysqli_fetch_assoc($result_query)){
             $product_id=$row['product_id'];
             $product_title=$row['product_title'];
