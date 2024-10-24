@@ -62,7 +62,7 @@
               </a>
             </li>
           </ul>
-          <form class="d-flex" action="searchProduct.php" method="get">
+          <form class="d-flex" action="" method="get">
             <input class="form-control me-2 custom-search-input" type="search" placeholder="Search" aria-label="Search" name="search_data">
              <input type="submit" value="Search" class="btn custom-search-button" name="search_data_product">
           </form>
@@ -113,7 +113,7 @@
          <div class="row">
           <!-- fetching products -->
           <?php
-          getProducts();
+          searchProducts();
           getUniqueCategories();
           ?>
 
