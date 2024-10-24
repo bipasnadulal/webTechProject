@@ -22,7 +22,7 @@ function getProducts(){
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
               <a href='#' class='btn custom-button'>Add to Cart</a>
-              <a href='#' class='btn custom-view-button'>View More</a>
+              <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
           </div>
           </div>";

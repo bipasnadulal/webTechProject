@@ -83,6 +83,11 @@
     object-fit: contain;
 }
 
+.wrapper {
+    min-height: calc(100vh - 60px); /* Adjust the 60px to  footer's height */
+ }
+ 
+
 /* css */
 .logo{
     width:10%;
@@ -90,7 +95,14 @@
 }
 
 .footer{
-    margin-bottom: 0;
+    height: 60px; /* Adjust based on footer's actual height */
+   background-color: #222; /* Footer background color */
+   color: #fff; /* Footer text color */
+   text-align: center;
+   line-height: 60px; /* Vertically center the footer content */
+   position: relative;
+   width: 100%;
+   bottom: 0;
 }
 
 .product-title{
