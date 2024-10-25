@@ -4,7 +4,6 @@
     box-sizing:border-box;
 }
 
-
 /* custom.css */
 .bg-custom-gray{
     background-color: #D3D3D3;
@@ -85,6 +84,7 @@
 
 .wrapper {
     min-height: calc(100vh - 60px); /* Adjust the 60px to  footer's height */
+
  }
  
 

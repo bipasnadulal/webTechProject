@@ -119,8 +119,8 @@
         <!-- col-end -->
         </div>
       </div>
-
       </div>
+  </div>
     <!-- last-child -->
     <div class="bg-dark text-white p-3 text-center mt-2">
     <p>All rights reserved &#169 Designed by Bipasna 2024</p>

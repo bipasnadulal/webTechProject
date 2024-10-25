@@ -20,7 +20,7 @@
 
 <body>
   <!-- Navbar -->
-  <div class="container-fluid p-0">
+  <div class="container-fluid p-0 wrapper">
     <div class="container-fluid  p-0">
     <nav class="navbar navbar-expand-lg bg-body-white">
       <div class="container-fluid">
@@ -122,7 +122,7 @@
         <!-- col-end -->
         </div>
       </div>
-
+</div>
 
     <!-- last-child -->
     <div class="bg-dark text-white p-3 text-center mt-2">
