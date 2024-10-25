@@ -51,7 +51,7 @@ function getAllProducts(){
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
               <a href='#' class='btn custom-button'>Add to Cart</a>
-              <a href='#' class='btn custom-view-button'>View More</a>
+              <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
           </div>
           </div>";
@@ -86,7 +86,7 @@ function getUniqueCategories(){
             <h5 class='card-title'>$product_title</h5>
             <p class='card-text'>$product_description</p>
             <a href='#' class='btn custom-button'>Add to Cart</a>
-            <a href='#' class='btn custom-view-button'>View More</a>
+             <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
           </div>
         </div>
         </div>";
@@ -121,12 +121,53 @@ function searchProducts(){
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
               <a href='#' class='btn custom-button'>Add to Cart</a>
-              <a href='#' class='btn custom-view-button'>View More</a>
+               <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
           </div>
           </div>";
             }
           }
+}
+
+//view details function
+function viewMore(){
+  global $conn;
+  if(isset($_GET['product_id'])){ 
+    if(!isset($_GET['category'])){
+      $product_id=$_GET['product_id'];
+    $select_query="Select * from `products` where product_id=$product_id";
+            $result_query=mysqli_query($conn, $select_query);
+            while($row=mysqli_fetch_assoc($result_query)){
+              $product_id=$row['product_id'];
+              $product_title=$row['product_title'];
+              $product_description=$row['product_description'];
+              $product_image=$row['product_image'];
+              $product_price=$row['product_price'];
+              $category_id=$row['category_id'];
+              echo "<div class='col-md-4'>
+                <!-- image of the product -->
+                <img src='./admin_area/product_images/$product_image' class='card-img-top' alt='$product_title' style='
+                max-height:300px;
+                width:100%;
+                object-fit:contain;
+                margin-top: 70px; 
+                margin-bottom: 20px;
+                '>
+            </div>
+          <div class='col-md-8'>
+                <!-- Description of the products -->
+                <h2 class='text-start' style='margin-top: 6rem'>$product_title</h2>
+                <h3 class='text-start  mt-3'>Rs. $product_price</h3>  
+                <div>
+                <p class='text-start'>$product_description</p>
+                </div>
+                <a href='#' class='btn custom-button'>Add to Cart</a>
+
+            </div>
+          ";
+            }
+          }
+        }
 }
 
 ?>

@@ -76,7 +76,7 @@
     </nav>
 
     <!-- Second-child -->
-    <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
+    <!-- <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
       <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
         <li class="nav-item">
           <a href="#" class="nav-link text-white">Welcome Guest</a>
@@ -86,7 +86,7 @@
         </li>
       </ul>
     </nav>
-    </div>
+    </div> -->
 
 
     <!-- Third-child -->
@@ -108,24 +108,9 @@
       <div class="col-md-12">
         <!-- products -->
          <div class="row">
-            <div class="col-md-4">
-                <!-- image of the product -->
-                <img src='./images/NaviforceNF8003.jpeg' class='card-img-top' alt='$product_title' style="
-                max-height:300px;
-                width:100%;
-                object-fit:contain;
-                margin-top: 70px; 
-                margin-bottom: 20px;
-                ">
-            </div>
-
-            <div class="col-md-8">
-                <!-- Description of the products -->
-                <h4 class="text-start " style="margin-top: 6rem">NaviforceNF8003</h4>
-            </div>
-
           <!-- fetching products -->
           <?php
+          viewMore();
           getUniqueCategories();
           ?>
 
