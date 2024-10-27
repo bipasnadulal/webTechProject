@@ -118,6 +118,8 @@ include('functions/functions.php');
           <?php
           getProducts();
           getUniqueCategories();
+          // $ip = getIPAddress();
+          // echo 'User Real IP Address - ' . $ip;
           ?>
 
           <!-- row-end -->
