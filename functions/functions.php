@@ -21,7 +21,7 @@ function getProducts(){
             <div class='card-body'>
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
-              <a href='#' class='btn custom-button'>Add to Cart</a>
+              <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
               <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
           </div>
@@ -50,7 +50,7 @@ function getAllProducts(){
             <div class='card-body'>
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
-              <a href='#' class='btn custom-button'>Add to Cart</a>
+              <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
               <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
           </div>
@@ -85,7 +85,7 @@ function getUniqueCategories(){
           <div class='card-body'>
             <h5 class='card-title'>$product_title</h5>
             <p class='card-text'>$product_description</p>
-            <a href='#' class='btn custom-button'>Add to Cart</a>
+            <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
              <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
           </div>
         </div>
@@ -120,7 +120,7 @@ function searchProducts(){
             <div class='card-body'>
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
-              <a href='#' class='btn custom-button'>Add to Cart</a>
+              <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
                <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
           </div>
@@ -189,5 +189,28 @@ function getIPAddress() {
 }  
 // $ip = getIPAddress();  
 // echo 'User Real IP Address - '.$ip;  
+
+
+//cart function
+function cart(){
+  if(isset($_GET['add_to_cart'])){
+    global $conn;
+    $ip = getIPAddress();
+    $get_product_id=$_GET['add_to_cart'];
+    $select_query= "SELECT * FROM `cart` WHERE ip_address='$ip' AND product_id=$get_product_id";
+    $result_query=mysqli_query($conn, $select_query);
+    $num_of_rows=mysqli_num_rows($result_query);
+    if($num_of_rows>0){
+      echo "<script>alert('This item is already added to cart.')</script>";
+      echo "<script>window.open('index.php', '_self')</script>";
+    }
+    else{
+      $insert_query="insert into `cart` (product_id, ip_address, quantity) values ($get_product_id, '$ip', 0)";
+      $result_query=mysqli_query($conn, $insert_query);
+      echo "<script>alert('This item is added to cart.')</script>";
+      echo "<script>window.open('index.php')</script>";
+    }
+  }
+} 
 
 ?>

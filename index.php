@@ -78,6 +78,11 @@ include('functions/functions.php');
         </div>
       </nav>
 
+      <!-- calling cart function -->
+      <?php 
+      cart();
+      ?>
+
       <!-- Second-child -->
       <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
         <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
