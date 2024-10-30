@@ -58,7 +58,11 @@
             <li class="nav-item position-relative">
               <a class="nav-link" href="#">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span class="cart-badge">1</span>
+              <span class="cart-badge">
+              <?php
+                    cartItem();
+                    ?>
+              </span>
               </a>
             </li>
           </ul>

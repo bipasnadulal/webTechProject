@@ -11,16 +11,15 @@ function getProducts(){
               $product_id=$row['product_id'];
               $product_title=$row['product_title'];
               $product_description=$row['product_description'];
-              $product_keywords=$row['product_keywords'];
               $product_image=$row['product_image'];
               $product_price=$row['product_price'];
-              $category_id=$row['category_id'];
               echo "<div class='col-md-3'>
           <div class='card'>
             <img src='./admin_area/product_images/$product_image' class='card-img-top' alt='$product_title'>
             <div class='card-body'>
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
+              <h5><p class='card-text'>Rs. $product_price</p></h5>
               <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
               <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
@@ -43,13 +42,13 @@ function getAllProducts(){
               $product_keywords=$row['product_keywords'];
               $product_image=$row['product_image'];
               $product_price=$row['product_price'];
-              $category_id=$row['category_id'];
               echo "<div class='col-md-3'>
           <div class='card'>
             <img src='./admin_area/product_images/$product_image' class='card-img-top' alt='$product_title'>
             <div class='card-body'>
               <h5 class='card-title'>$product_title</h5>
               <p class='card-text'>$product_description</p>
+              <h5><p class='card-text'>Rs. $product_price</p></h5>
               <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
               <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
             </div>
@@ -85,6 +84,7 @@ function getUniqueCategories(){
           <div class='card-body'>
             <h5 class='card-title'>$product_title</h5>
             <p class='card-text'>$product_description</p>
+            <h5><p class='card-text'>Rs. $product_price</p></h5>
             <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
              <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
           </div>
@@ -215,21 +215,24 @@ function cart(){
 
 // getting cart item number
 function cartItem(){
+  global $conn;
+  $count_cart_items=0;
   if(isset($_GET['add_to_cart'])){
-    global $conn;
     $ip = getIPAddress();
     $select_query= "SELECT * FROM `cart` WHERE ip_address='$ip'";
     $result_query=mysqli_query($conn, $select_query);
     $count_cart_items=mysqli_num_rows($result_query);
   }
     else{
-      global $conn;
     $ip = getIPAddress();
     $select_query= "SELECT * FROM `cart` WHERE ip_address='$ip'";
     $result_query=mysqli_query($conn, $select_query);
     $count_cart_items=mysqli_num_rows($result_query);
     }
-    echo $count_cart_items;
+    if($count_cart_items>0){
+      echo $count_cart_items;
+    }
+   
   }
 
 
