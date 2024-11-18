@@ -104,15 +104,38 @@ include('functions/functions.php');
                 </tr>
             </thead>
             <tbody>
+              <!-- php code to display dynamic data -->
+               <?php
+                global $conn;
+                $get_ip_add =  getIPAddress();
+                $total_price=0;
+                $cart_query="Select * from `cart` where ip_address = '$get_ip_add'";
+                $result=mysqli_query($conn, $cart_query);
+                while($row=mysqli_fetch_array($result)){
+                  $product_id=$row['product_id'];
+                  $select_products="Select * from `products` where product_id=$product_id";
+                  $result_products=mysqli_query($conn, $select_products);
+                  while($row_product_price=mysqli_fetch_array($result_products)){
+                    $product_price=array($row_product_price['product_price']);
+                    $price_table=$row_product_price['product_price'];
+                    $product_title=$row_product_price['product_title'];
+                    $product_image=$row_product_price['product_image'];
+                    $product_values=array_sum($product_price);
+                    $total_price+=$product_values;
+                 ?>
                 <tr>
                     <td>
-                    <b>NaviforceNF8003</b>
+                    <b><?php
+                    echo $product_title
+                    ?></b>
                     </td>
                     <td>
-                    <img src="./images/NaviforceNF8003.jpeg" alt="NaviforceNF8003" width="100px">
+                    <img src="./images/<?php
+                    echo $product_image
+                    ?>" alt="<?php echo $product_title ?>" width="100px">
                     </td>
-                    <td>
-                      2500
+                    <td>Rs. 
+                      <?php echo $price_table ?>
                     </td>
                     <td>
                       <div class="wrapperButton">
@@ -152,15 +175,19 @@ include('functions/functions.php');
                     </td>
 
                 </tr>
+                <?php
+              }
+            }
+           ?>
             </tbody>
         </table>
 
         <!-- sub-total -->
         <div class="cartContainer">
-            <h5>Order Summary</h5>
+            <h5 class="mt-2">Order Summary</h5>
             <div class="d-flex justify-content-between">
               <span>Subtotal</span>
-              <span>Rs. 2500</span>
+              <span>Rs. <?php echo $total_price ?></span>
             </div>
             <div class="d-flex justify-content-between">
               <span>Shipping Fee</span>
