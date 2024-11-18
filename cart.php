@@ -9,7 +9,7 @@ include('functions/functions.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WristCraft</title>
+  <title>WristCraft - Cart details</title>
   <!-- Bootstrap Link -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS Link -->
@@ -87,55 +87,92 @@ include('functions/functions.php');
       cart();
       ?>
 
-      <!-- Second-child -->
-      <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
-        <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white">Welcome Guest</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white">Login</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+  </div>
 
 
-    <!-- Third-child -->
-    <!-- <div class="HomeContainer">
-     <div class="homePageContainer">
-      <img src="./images/homePage.png" alt="HomePage Image" class="homePageImage">
-    </div>
-    <div class="content">
-    <p>Your Perfect Watch, Just a Click Away.</p>
-    <button>Shop Now</button>
-    </div>
-    
-     </div> -->
+  <div class="container table-responsive">
+    <div class="row">
+      <h3 class="text-center mb-3">My Cart</h3>
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th colspan="2">Items</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                    <th colspan="2">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                    <b>NaviforceNF8003</b>
+                    </td>
+                    <td>
+                    <img src="./images/NaviforceNF8003.jpeg" alt="NaviforceNF8003" width="100px">
+                    </td>
+                    <td>
+                      2500
+                    </td>
+                    <td>
+                      <div class="wrapperButton">
+                        <span class="minus">-</span>
+                        <span class="num">00</span>
+                        <span class="plus">+</span>
+                      </div>
+                      <script>
+                        const plusButton = document.querySelector(".plus"),
+                        minusButton = document.querySelector(".minus"),
+                        numDisplay=document.querySelector(".num");
+                        
+                          let a =0;
+                          plusButton.addEventListener("click", ()=>{
+                          a++
+                          a=(a<10) ? "0" + a : a;
+                          numDisplay.innerText = a;
+                        });
 
+                          minusButton.addEventListener("click", ()=>{
+                          if ( a > 0 ){
+                            a--;
+                          a = (a<10) ? "0" + a: a;
+                          numDisplay.innerText = a;
+                          }
+                        });
+                        
+                        
+                      </script>
+                    </td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <button class="custom-button">Update</button>
+                      <button class="custom-button">Remove</button>
+                    </td>
 
-    <!-- Fourth-child -->
-    <div class="mt-5">
-      <h3 class="mx-4">Explore WristCraft</h3>
-    </div>
-    <!-- Products Display -->
-    <div class="row px-4">
-      <div class="col-md-12">
-        <!-- products -->
-        <div class="row">
-          <!-- fetching products -->
-          <?php
-          getProducts();
-          getUniqueCategories();
-          // $ip = getIPAddress();
-          // echo 'User Real IP Address - ' . $ip;
-          ?>
+                </tr>
+            </tbody>
+        </table>
 
-          <!-- row-end -->
+        <!-- sub-total -->
+        <div class="cartContainer">
+            <h5>Order Summary</h5>
+            <div class="d-flex justify-content-between">
+              <span>Subtotal</span>
+              <span>Rs. 2500</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Shipping Fee</span>
+              <span>Free</span>
+            </div>
+            <div class="d-flex mt-5 mb-2">
+            <a href="index.php"><button class="custom-search-button px-3 py-2 border-0 ">Continue Shopping</button></a>
+            <a href="#"><button class="custom-search-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
+            </div>   
         </div>
-        <!-- col-end -->
-      </div>
     </div>
+  </div>
   </div>
 
   <!-- last-child -->
@@ -144,7 +181,8 @@ include('functions/functions.php');
   </div>
 
   <!-- Bootstrap JS Link -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
 </body>
 
 </html>
