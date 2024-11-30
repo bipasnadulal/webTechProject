@@ -56,7 +56,7 @@
             <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
             <li class="nav-item position-relative">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="cart.php">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               <span class="cart-badge">
               <?php

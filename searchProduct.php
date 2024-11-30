@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+            <li class="nav-item"><a class="nav-link" href="displayProducts.php">Shop</a></li>
 
             <!-- Categories with dropdown -->
              <li class="nav-item dropdown">
@@ -56,7 +56,7 @@
             <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
             <li class="nav-item position-relative">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="cart.php">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               <span class="cart-badge">
               <?php

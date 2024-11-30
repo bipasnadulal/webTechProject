@@ -92,6 +92,7 @@ include('functions/functions.php');
 
   <div class="container table-responsive">
     <div class="row">
+      <form action="" method="post">
       <h3 class="text-center mb-3">My Cart</h3>
         <table class="table text-center">
             <thead>
@@ -108,6 +109,7 @@ include('functions/functions.php');
                <?php
                 global $conn;
                 $get_ip_add =  getIPAddress();
+                global $total_price;
                 $total_price=0;
                 $cart_query="Select * from `cart` where ip_address = '$get_ip_add'";
                 $result=mysqli_query($conn, $cart_query);
@@ -130,7 +132,7 @@ include('functions/functions.php');
                     ?></b>
                     </td>
                     <td>
-                    <img src="./images/<?php
+                    <img src="./admin_area/product_images/<?php
                     echo $product_image
                     ?>" alt="<?php echo $product_title ?>" width="100px">
                     </td>
@@ -138,21 +140,25 @@ include('functions/functions.php');
                       <?php echo $price_table ?>
                     </td>
                     <td>
+                      <!-- Quantity -->
                       <div class="wrapperButton">
                         <span class="minus">-</span>
                         <span class="num">00</span>
                         <span class="plus">+</span>
                       </div>
+                      <input type="hidden" name="quantity" id="quantityInput" value="0"/>  <!--Hidden field-->
                       <script>
                         const plusButton = document.querySelector(".plus"),
                         minusButton = document.querySelector(".minus"),
                         numDisplay=document.querySelector(".num");
+                        quantityInput =document.querySelector("#quantityInput");
                         
                           let a =0;
                           plusButton.addEventListener("click", ()=>{
                           a++
                           a=(a<10) ? "0" + a : a;
                           numDisplay.innerText = a;
+                          quantityInput.value=a;
                         });
 
                           minusButton.addEventListener("click", ()=>{
@@ -160,18 +166,42 @@ include('functions/functions.php');
                             a--;
                           a = (a<10) ? "0" + a: a;
                           numDisplay.innerText = a;
+                          quantityInput.value=a;
                           }
-                        });
-                        
-                        
-                      </script>
+                        }); 
+                      </script> 
+                      <?php
+                        $get_ip_add = getIPAddress();
+                        if(isset($_POST['updateCart'])){
+                          $quantities = intval($_POST['quantity']);
+                          $update_cart="update `cart` set quantity=$quantities where ip_address='$get_ip_add'";
+                          $result_products_quantity=mysqli_query($conn, $update_cart); 
+                          $total_price=0;
+                          while ($row = mysqli_fetch_array($result)) {
+                            $product_id = $row['product_id'];
+                            $product_quantity = $row['quantity'];
+                    
+                            // Fetch the product price
+                            $select_products = "SELECT * FROM `products` WHERE product_id = $product_id";
+                            $result_products = mysqli_query($conn, $select_products);
+                            while ($row_product_price = mysqli_fetch_array($result_products)) {
+                                $product_price = $row_product_price['product_price'];
+                                $total_price += $product_price * $product_quantity;
+                            }
+                        }
+                        }
+                      ?>
                     </td>
                     <td>
-                      <input type="checkbox">
+                      <input type="checkbox" name="remove_item[]" value="
+                      <?php
+                        echo $product_id
+                      ?>
+                      ">
                     </td>
                     <td>
-                      <button class="custom-button">Update</button>
-                      <button class="custom-button">Remove</button>
+                       <input type="submit" value="Update Cart" class="custom-button" name="updateCart">
+                       <input type="submit" value="Remove Item" class="custom-button" name="removeItem">
                     </td>
 
                 </tr>
@@ -182,24 +212,73 @@ include('functions/functions.php');
             </tbody>
         </table>
 
-        <!-- sub-total -->
-        <div class="cartContainer">
-            <h5 class="mt-2">Order Summary</h5>
-            <div class="d-flex justify-content-between">
-              <span>Subtotal</span>
-              <span>Rs. <?php echo $total_price ?></span>
-            </div>
-            <div class="d-flex justify-content-between">
-              <span>Shipping Fee</span>
-              <span>Free</span>
-            </div>
-            <div class="d-flex mt-5 mb-2">
-            <a href="index.php"><button class="custom-search-button px-3 py-2 border-0 ">Continue Shopping</button></a>
-            <a href="#"><button class="custom-search-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
-            </div>   
-        </div>
+        
     </div>
+    </form>
+    <!-- function to remove item -->
+     <?php
+      function remove_cart_item(){
+        global $conn;
+        if(isset($_POST['removeItem'])){
+          foreach($_POST['remove_item'] as $remove_id){
+            echo $remove_id;
+            $delete_query = "delete from `cart` where product_id = $remove_id";
+            $execute_delete=mysqli_query($conn, $delete_query);
+            if($execute_delete){
+              echo "<script>
+              window.open('cart.php','_self')
+              </script>";
+            }
+          }
+        }
+      }
+      echo remove_cart_item();
+     ?>
+
+     <!-- sub-total -->
+      <?php
+      global $conn;
+      $get_ip_add=getIPAddress();
+      global $total_price;
+      $total_price=0;
+      $cart_query="Select * from `cart` where ip_address = '$get_ip_add'";
+      $result=mysqli_query($conn, $cart_query);
+      while($row=mysqli_fetch_array($result)){
+                  $product_id=$row['product_id'];
+                  $select_products="Select * from `products` where product_id=$product_id";
+                  $result_products=mysqli_query($conn, $select_products);
+                  while($row_product_price=mysqli_fetch_array($result_products)){
+                    $product_price=array($row_product_price['product_price']);
+                    $price_table=$row_product_price['product_price'];
+                    $product_title=$row_product_price['product_title'];
+                    $product_image=$row_product_price['product_image'];
+                    $product_values=array_sum($product_price);
+                    $total_price+=$product_values;
+                  }}
+      $cart_has_items=mysqli_num_rows($result)>0;
+      if($cart_has_items){
+        echo'
+        <div class="cartContainer">
+        <h5 class="m-2">Order Summary</h5>
+        <div class="d-flex justify-content-between m-2">
+          <span>Subtotal</span>
+          <span>Rs. '.$total_price.'</span>
+        </div>
+        <div class="d-flex justify-content-between m-2">
+          <span>Shipping Fee</span>
+          <span>Free</span>
+        </div>
+        <div class="d-flex justify-content-between m-3">
+        <a href="index.php"><button class="custom-search-button px-3 py-2 border-0 ">Continue Shopping</button></a>
+        <a href="#"><button class="custom-search-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
+        </div>   
+    </div>
+        ';
+      }
+      ?>
+  
   </div>
+  
   </div>
 
   <!-- last-child -->
