@@ -33,6 +33,7 @@
     border-radius:4px;
     font-size:16px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .custom-view-button{
@@ -183,6 +184,17 @@
 }
 
 
+/* .emptyCart{
+    width:300px;
+    height:300px;
+    margin:auto;
+} */
+
+.emptyCart img{
+   max-width: 300px;
+   margin:0 auto;
+   display: block;
+}
 /* .homePageContainer {
     position: relative;
     width: 100vw; 

@@ -93,18 +93,9 @@ include('functions/functions.php');
   <div class="container table-responsive">
     <div class="row">
       <form action="" method="post">
-      <h3 class="text-center mb-3">My Cart</h3>
+      <h3 class='text-center mb-3'>My Cart</h3>
         <table class="table text-center">
-            <thead>
-                <tr>
-                    <th colspan="2">Items</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Remove</th>
-                    <th colspan="2">Operations</th>
-                </tr>
-            </thead>
-            <tbody>
+            
               <!-- php code to display dynamic data -->
                <?php
                 global $conn;
@@ -113,6 +104,21 @@ include('functions/functions.php');
                 $total_price=0;
                 $cart_query="Select * from `cart` where ip_address = '$get_ip_add'";
                 $result=mysqli_query($conn, $cart_query);
+                $result_count=mysqli_num_rows($result);
+                if($result_count>0){
+                echo "
+                
+                <thead>
+                <tr>
+                    <th colspan='2'>Items</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                    <th colspan='2'>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                ";
                 while($row=mysqli_fetch_array($result)){
                   $product_id=$row['product_id'];
                   $select_products="Select * from `products` where product_id=$product_id";
@@ -188,6 +194,7 @@ include('functions/functions.php');
                                 $product_price = $row_product_price['product_price'];
                                 $total_price += $product_price * $product_quantity;
                             }
+                          
                         }
                         }
                       ?>
@@ -206,7 +213,20 @@ include('functions/functions.php');
 
                 </tr>
                 <?php
+                }
               }
+            }
+            else{
+              echo "
+              <div class='emptyCart text-center'>
+                <img src='./images/cart.png' alt='empty cart'/>
+               
+              <h3>Your Cart Is Currently Empty!</h3>
+              <p>Before proceed to checkout you must add some products to your shopping cart.</p>
+              <p>You will find a lost of interesting products on our 'Shop' page.</p>
+              <a href='displayProducts.php' class='custom-button'>Return to Shop</a>
+              </div>
+              ";
             }
            ?>
             </tbody>
@@ -270,7 +290,7 @@ include('functions/functions.php');
         </div>
         <div class="d-flex justify-content-between m-3">
         <a href="index.php"><button class="custom-search-button px-3 py-2 border-0 ">Continue Shopping</button></a>
-        <a href="#"><button class="custom-search-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
+        <a href="displayProducts.php"><button class="custom-search-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
         </div>   
     </div>
         ';
