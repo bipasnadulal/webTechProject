@@ -215,6 +215,7 @@ include('functions/functions.php');
                 <?php
                 }
               }
+              
             }
             else{
               echo "
@@ -224,7 +225,7 @@ include('functions/functions.php');
               <h3>Your Cart Is Currently Empty!</h3>
               <p>Before proceed to checkout you must add some products to your shopping cart.</p>
               <p>You will find a lost of interesting products on our 'Shop' page.</p>
-              <a href='displayProducts.php' class='custom-button'>Return to Shop</a>
+              <a href='displayProducts.php' class='custom-button' name='return_to_shop'>Return to Shop</a>
               </div>
               ";
             }
@@ -289,13 +290,13 @@ include('functions/functions.php');
           <span>Free</span>
         </div>
         <div class="d-flex justify-content-between m-3">
-        <a href="index.php"><button class="custom-search-button px-3 py-2 border-0 ">Continue Shopping</button></a>
-        <a href="displayProducts.php"><button class="custom-search-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
+        <a href="index.php"><button class="custom-button px-3 py-2 border-0 ">Continue Shopping</button></a>
+        <a href="checkout.php"><button class="custom-view-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
         </div>   
     </div>
         ';
       }
-      ?>
+      ?> 
   
   </div>
   
