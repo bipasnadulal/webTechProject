@@ -96,10 +96,10 @@ include('../functions/functions.php');
         <!-- products -->
         <div class="row">
         <?php
-        if(!isset($_SESSION['user_email'])){
+        if(!isset($_SESSION['username'])){
           include('user_login.php');
         }else{
-          include('payment.php');
+          include('../payment.php');
         }
           ?>
         </div>

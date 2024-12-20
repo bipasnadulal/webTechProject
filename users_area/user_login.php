@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
-</head>
-
-<body>
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WristCraft-User Registration</title>
+        <title>WristCraft-User Login</title>
         <!-- Specifies the base URL for all relative URLs in the page -->
         <base href="/WEBTECHPROJECT/">
         <!-- Bootstrap Link -->
@@ -23,6 +13,13 @@
         <link rel="stylesheet" href="styles.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+        <!-- internal css -->
+        <style>
+            body{
+                overflow-x:hidden;
+            }
+        </style>
 
     </head>
 
@@ -45,7 +42,7 @@
                     </div>
 
                     <h2 class="text-center">Login</h2>
-                    <form action="" method="post" enctype="multipart/form=data">
+                    <form action="" method="post">
 
                         <div class="form-outline mb-2">
                             <label for="username" class="form-label">Username</label>
@@ -62,7 +59,7 @@
                         </div>
 
                         <div>
-                            <input type="submit" value="Login" class="custom-button" name="userRegister"
+                            <input type="submit" value="Login" class="custom-button" name="userLogin"
                                 style="width:400px;">
                             <p class="text-center mt-2">Don't have an account?<a
                                     href="users_area/user_registration.php">Register</a></p>
@@ -78,3 +75,13 @@
 </body>
 
 </html>
+
+<!-- PHP Code -->
+<?php
+if(isset($_POST['userLogin'])){
+    $userName = $_POST['username'];
+    $user_password = $_POST['userPassword'];
+
+}
+
+?>

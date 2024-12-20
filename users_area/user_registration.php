@@ -75,15 +75,16 @@ include('../functions/functions.php');
 </html>
 
 <!-- php code -->
- <?php
- if(isset($_POST['userRegister'])){
+<?php
+if (isset($_POST['userRegister'])) {
     $user_name = $_POST['username'];
     $user_email = $_POST['userEmail'];
     $user_address = $_POST['userAddress'];
     $user_contact = $_POST['userContact'];
+    $hash_password=password_hash($user_password,PASSWORD_DEFAULT);
     $user_password = $_POST['userPassword'];
     $confirm_pw = $_POST['confirmPw'];
-    $user_IP=getIPAddress();
+    $user_IP = getIPAddress();
 
     //for inserting users image need to make a form field and then uncomment these and also create one user_images folder inside user_area.
     // $user_image=$_FILES['user_image']['name'];
@@ -91,14 +92,36 @@ include('../functions/functions.php');
 
     // move_uploaded_file($user_image_temp, "./user_images/$user_image");
 
-    $insert_query="insert into `user_table` (username, user_email, user_password, user_ip, user_address, user_mobile) values ('$user_name', '$user_email','$user_password', '$user_IP','$user_address', '$user_contact')";
-
-    $sql_execute=mysqli_query($conn, $insert_query);
-    if($sql_execute){
-        echo "<script>alert('Data inserted successfully')</script>";
+    //select query
+    $select_query = "Select * from `user_table` where username='$user_name' or user_email='$user_email'";
+    $result = mysqli_query($conn, $select_query);
+    $rows_count = mysqli_num_rows($result);
+    if ($rows_count > 0) {
+        echo "<script>alert('Username or user email already exist.')</script>";
+        echo "<script>window.open('user_registration.php')</script>";
+    } 
+    else if($user_password != $confirm_pw){
+        echo "<script>alert('Passwords do not match.')</script>";
+    }
+    else {
+        //insert query
+        $insert_query = "insert into `user_table` (username, user_email, user_password, user_ip, user_address, user_mobile) values ('$user_name', '$user_email','$hash_password', '$user_IP','$user_address', '$user_contact')";
+        $sql_execute = mysqli_query($conn, $insert_query);
+    }
+    
+    //selecting cart item
+    $select_cart_items="Select * from `cart` where ip_address='$user_IP'";
+    $result_cart=mysqli_query($conn, $select_cart_items);
+    $rows_count=mysqli_num_rows($result_cart);
+    if($rows_count>0){
+        $_SESSION['username']=$user_name;
+        echo "<script>alert('You have items in your cart.')</script>";
+        echo "<script>window.open('checkout.php', '_self');</script>";
     }
     else{
-        die ("ERROR: Could not connect".mysqli_connect_error());
+        echo "<script>window.open('index.php', '_self');</script>";
     }
- }
+
+
+}
 ?>

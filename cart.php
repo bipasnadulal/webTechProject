@@ -16,6 +16,14 @@ include('functions/functions.php');
   <link rel="stylesheet" href="styles.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <!-- internal css -->
+  <style>
+    body{
+      overflow-x:hidden;
+    }
+    
+  </style>
 </head>
 
 <body>
