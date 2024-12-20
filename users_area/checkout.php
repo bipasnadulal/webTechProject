@@ -1,6 +1,6 @@
 <?php
-include("database/connect.php");
-include('functions/functions.php');
+include("../database/connect.php");
+include('../functions/functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +10,7 @@ include('functions/functions.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WristCraft-Checkout Page</title>
+  <base href="/WEBTECHPROJECT/">
   <!-- Bootstrap Link -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS Link -->
@@ -73,25 +74,16 @@ include('functions/functions.php');
                 aria-label="Search" name="search_data">
               <input type="submit" value="Search" class="btn custom-search-button" name="search_data_product">
             </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="#" class="nav-link sign-up-link">Sign Up</a>
-              </li>
-            </ul>
+           
           </div>
         </div>
       </nav>
-
-
 
       <!-- Second-child -->
       <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
         <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
           <li class="nav-item">
             <a href="#" class="nav-link text-white">Welcome Guest</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white">Login</a>
           </li>
         </ul>
       </nav>
@@ -103,12 +95,12 @@ include('functions/functions.php');
       <div class="col-md-12">
         <!-- products -->
         <div class="row">
-          <?php
-          if(!isset($_SESSION['user_email'])){
-            include('./users_area/user_login.php');
-          }else{
-            include('payment.php');
-          }
+        <?php
+        if(!isset($_SESSION['user_email'])){
+          include('user_login.php');
+        }else{
+          include('payment.php');
+        }
           ?>
         </div>
         <!-- col-end -->

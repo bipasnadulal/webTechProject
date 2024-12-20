@@ -1,3 +1,8 @@
+<?php
+include('../database/connect.php');
+include('../functions/functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,23 +16,22 @@
     <link rel="stylesheet" href="../styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
 </head>
 
 <body style="background-color:black">
     <div class="container-fluid d-flex align-items-center justify-content-center rounded"
-        style="margin-top:3%; background-color:grey;width:950px; background-image: url('../images/watchUserReg.jpg'); background-repeat:no-repeat;">
+        style="background-color:grey;width:950px; background-image: url('../images/watchUserReg.jpg'); background-repeat:no-repeat;">
         <div class="d-flex flex-column align-items-center justify-content-center rounded"
             style="background-color:white;width:550px; height:720px; margin-right:-400px;">
             <div style="width:150px; height:55px;">
-            <img src="../images/logo.png" alt="logo" style="
+                <img src="../images/logo.png" alt="logo" style="
             width:100%; height:100%; object-fit:cover;
             ">
             </div>
-           
-                <h2 class="text-center">Welcome</h2>
+            <h2 class="text-center">Welcome</h2>
+
             <form action="" method="post" enctype="multipart/form=data">
-            
+
                 <div class="form-outline mb-2">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" id="username" class="form-control" placeholder="Enter your name"
@@ -59,7 +63,8 @@
                         autocomplete="off" required="required" name="confirmPw">
                 </div>
                 <div>
-                    <input type="submit" value="Register" class="custom-button" name="userRegister" style="width:400px;">
+                    <input type="submit" value="Register" class="custom-button" name="userRegister"
+                        style="width:400px;">
                     <p class="text-center mt-2">Already have an account?<a href="user_login.php">Login</a></p>
                 </div>
             </form>
@@ -68,3 +73,32 @@
 </body>
 
 </html>
+
+<!-- php code -->
+ <?php
+ if(isset($_POST['userRegister'])){
+    $user_name = $_POST['username'];
+    $user_email = $_POST['userEmail'];
+    $user_address = $_POST['userAddress'];
+    $user_contact = $_POST['userContact'];
+    $user_password = $_POST['userPassword'];
+    $confirm_pw = $_POST['confirmPw'];
+    $user_IP=getIPAddress();
+
+    //for inserting users image need to make a form field and then uncomment these and also create one user_images folder inside user_area.
+    // $user_image=$_FILES['user_image']['name'];
+    // $user_image_temp=$_POST['user_image']['tmp_name'];
+
+    // move_uploaded_file($user_image_temp, "./user_images/$user_image");
+
+    $insert_query="insert into `user_table` (username, user_email, user_password, user_ip, user_address, user_mobile) values ('$user_name', '$user_email','$user_password', '$user_IP','$user_address', '$user_contact')";
+
+    $sql_execute=mysqli_query($conn, $insert_query);
+    if($sql_execute){
+        echo "<script>alert('Data inserted successfully')</script>";
+    }
+    else{
+        die ("ERROR: Could not connect".mysqli_connect_error());
+    }
+ }
+?>

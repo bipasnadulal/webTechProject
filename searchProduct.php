@@ -86,8 +86,8 @@
           <a href="#" class="nav-link text-white">Welcome Guest</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-white">Login</a>
-        </li>
+            <a href="./users_area/user_login.php" class="nav-link text-white">Login</a>
+          </li>
       </ul>
     </nav>
     </div>

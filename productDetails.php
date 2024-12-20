@@ -71,9 +71,9 @@
              <input type="submit" value="Search" class="btn custom-search-button" name="search_data_product">
           </form>
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="#" class="nav-link sign-up-link">Sign Up</a>
-            </li>
+          <li class="nav-item">
+            <a href="./users_area/user_login.php" class="nav-link text-white">Login</a>
+          </li>
           </ul>
         </div>
       </div>
@@ -92,18 +92,6 @@
     </nav>
     </div> -->
 
-
-    <!-- Third-child -->
-    <!-- <div class="HomeContainer">
-     <div class="homePageContainer">
-      <img src="./images/homePage.png" alt="HomePage Image" class="homePageImage">
-    </div>
-    <div class="content">
-    <p>Your Perfect Watch, Just a Click Away.</p>
-    <button>Shop Now</button>
-    </div>
-    
-     </div> -->
 
 
     <!-- Fourth-child -->

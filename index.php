@@ -94,24 +94,12 @@ include('functions/functions.php');
             <a href="#" class="nav-link text-white">Welcome Guest</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link text-white">Login</a>
+            <a href="./users_area/user_login.php" class="nav-link text-white">Login</a>
           </li>
         </ul>
       </nav>
     </div>
 
-
-    <!-- Third-child -->
-    <!-- <div class="HomeContainer">
-     <div class="homePageContainer">
-      <img src="./images/homePage.png" alt="HomePage Image" class="homePageImage">
-    </div>
-    <div class="content">
-    <p>Your Perfect Watch, Just a Click Away.</p>
-    <button>Shop Now</button>
-    </div>
-    
-     </div> -->
 
 
     <!-- Fourth-child -->

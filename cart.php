@@ -62,7 +62,10 @@ include('functions/functions.php');
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span class="cart-badge">
                     <?php
-                    cartItem();
+                    
+                      cartItem();
+                    
+                    
                     ?>
                   </span>
                 </a>
@@ -291,7 +294,7 @@ include('functions/functions.php');
         </div>
         <div class="d-flex justify-content-between m-3">
         <a href="index.php"><button class="custom-button px-3 py-2 border-0 ">Continue Shopping</button></a>
-        <a href="checkout.php"><button class="custom-view-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
+        <a href="./users_area/checkout.php"><button class="custom-view-button px-3 py-2 border-0 mx-3">Proceed to Checkout</button></a>
         </div>   
     </div>
         ';

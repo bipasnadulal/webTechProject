@@ -4,6 +4,10 @@
     box-sizing:border-box;
 }
 
+html, body{
+    height:100%;
+}
+
 /* custom.css */
 .bg-custom-gray{
     background-color: #D3D3D3;
@@ -206,6 +210,8 @@
 .UserRegistration{
     margin: auto;
 }
+
+
 /* .homePageContainer {
     position: relative;
     width: 100vw; 
