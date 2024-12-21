@@ -30,7 +30,7 @@ include('../functions/functions.php');
             </div>
             <h2 class="text-center">Welcome</h2>
 
-            <form action="" method="post" enctype="multipart/form=data">
+            <form action="" method="post" enctype="multipart/form-data">
 
                 <div class="form-outline mb-2">
                     <label for="username" class="form-label">Username</label>
@@ -81,10 +81,10 @@ if (isset($_POST['userRegister'])) {
     $user_email = $_POST['userEmail'];
     $user_address = $_POST['userAddress'];
     $user_contact = $_POST['userContact'];
-    $hash_password=password_hash($user_password,PASSWORD_DEFAULT);
     $user_password = $_POST['userPassword'];
     $confirm_pw = $_POST['confirmPw'];
     $user_IP = getIPAddress();
+    $hash_password=password_hash($user_password,PASSWORD_DEFAULT);
 
     //for inserting users image need to make a form field and then uncomment these and also create one user_images folder inside user_area.
     // $user_image=$_FILES['user_image']['name'];
@@ -98,7 +98,6 @@ if (isset($_POST['userRegister'])) {
     $rows_count = mysqli_num_rows($result);
     if ($rows_count > 0) {
         echo "<script>alert('Username or user email already exist.')</script>";
-        echo "<script>window.open('user_registration.php')</script>";
     } 
     else if($user_password != $confirm_pw){
         echo "<script>alert('Passwords do not match.')</script>";

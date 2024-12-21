@@ -1,3 +1,8 @@
+    <?php
+include('../database/connect.php');
+include_once('../functions/functions.php');
+    ?>
+    
     <!DOCTYPE html>
     <html lang="en">
 
@@ -52,10 +57,10 @@
 
 
                         <div class="form-outline mb-2">
-                            <label for="userPassword" class="form-label">Password</label>
-                            <input type="password" id="userPassword" class="form-control"
+                            <label for="user_password" class="form-label">Password</label>
+                            <input type="password" id="user_password" class="form-control"
                                 placeholder="Enter your password" autocomplete="off" required="required"
-                                name="userPassword">
+                                name="user_password">
                         </div>
 
                         <div>
@@ -80,8 +85,44 @@
 <?php
 if(isset($_POST['userLogin'])){
     $userName = $_POST['username'];
-    $user_password = $_POST['userPassword'];
+    $user_password = $_POST['user_password'];
 
+    //sql query
+
+    $select_query="Select * from `user_table` where username='$userName'";
+    $result=mysqli_query($conn, $select_query);
+
+    if($result){
+    $rows_count=mysqli_num_rows($result);
+    $row_data=mysqli_fetch_assoc($result);
+    $user_ip=getIPAddress();
+
+    //cart item
+    $select_query_cart="Select * from `cart` where ip_address='$user_ip'";
+    $select_cart=mysqli_query($conn, $select_query_cart);
+    $rows_cart_count=mysqli_num_rows($select_cart);
+
+    if($rows_count>0){
+        if(password_verify($user_password, $row_data['user_password'])){
+            if($rows_count==1 and $rows_cart_count==0){
+                echo "<script>alert('Logged in Successfully')</script>";
+                echo "<script>window.open('users_area/profile.php', '_self')</script>";
+            }
+            else{
+                echo "<script>alert('Logged in Successfully')</script>";
+                echo "<script>window.open('users_area/payment.php', '_self')</script>";
+            }
+        }else{
+            echo "<script>alert('Invalid Credentials')</script>";
+        }
+    }else{
+        echo "<script>alert('Invalid Credentials')</script>";
+    }
 }
+else{
+    echo "<script>alert('Database query failed')</script>";
+}
+}
+
 
 ?>

@@ -78,7 +78,7 @@
           </form>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" class="nav-link sign-up-link">Sign Up</a>
+              <a href="./users_area/user_registration.php" class="nav-link sign-up-link">Sign Up</a>
             </li>
           </ul>
         </div>
