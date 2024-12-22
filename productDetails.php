@@ -1,6 +1,7 @@
 <?php
   include("database/connect.php");
   include('functions/functions.php');
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -77,27 +78,36 @@
             <input class="form-control me-2 custom-search-input" type="search" placeholder="Search" aria-label="Search" name="search_data">
              <input type="submit" value="Search" class="btn custom-search-button" name="search_data_product">
           </form>
-          <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="./users_area/user_login.php" class="nav-link text-white">Login</a>
-          </li>
-          </ul>
         </div>
       </div>
     </nav>
 
     <!-- Second-child -->
-    <!-- <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
-      <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
-        <li class="nav-item">
-          <a href="#" class="nav-link text-white">Welcome Guest</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link text-white">Login</a>
-        </li>
+    <nav class="navbar navbar-expand-lg  bg-dark sticky-top">
+    <ul class="navbar-nav me-auto gap-4 ms-5 mt-n3">
+        <?php
+        if(!isset($_SESSION['username'])){
+          echo "<li class='nav-item'>
+          <a class='nav-link text-white' href='#'>Welcome Guest</a>
+          </li>";
+        }else{
+          echo "<li class='nav-item'>
+          <a class='nav-link text-white' href='#'>Welcome ".$_SESSION['username']."</a>
+          </li>";
+        }
+          if(!isset($_SESSION['username'])){
+            echo "<li class='nav-item'>
+            <a class='nav-link text-white' href='./users_area/user_login.php'>Login</a>
+            </li>";
+          }else{
+            echo "<li class='nav-item'>
+            <a class='nav-link text-white' href='./users_area/user_logout.php'>Logout</a>
+            </li>";
+          }
+          ?>
       </ul>
     </nav>
-    </div> -->
+    </div>
 
 
 

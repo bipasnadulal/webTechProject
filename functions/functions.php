@@ -3,40 +3,31 @@
 
 
 //getting products
-function getProducts()
-{
+function getProducts(){
   global $conn;
-  if (!isset($_GET['category'])) {
-    $select_query = "Select * from `products` order by rand() limit 0,8";
-    $result_query = mysqli_query($conn, $select_query);
-    while ($row = mysqli_fetch_assoc($result_query)) {
-      $product_id = $row['product_id'];
-      $product_title = $row['product_title'];
-      $product_description = $row['product_description'];
-      $product_image = $row['product_image'];
-      $product_price = $row['product_price'];
-      echo "<div class='col-md-3'>
-          <div class='card'>
-            <img src='./admin_area/product_images/$product_image' class='card-img-top' alt='$product_title'>
-            <div class='card-body'>
-              <h5 class='card-title'>$product_title</h5>
-              <p class='card-text'>$product_description</p>
-              <h5><p class='card-text'>Rs. $product_price</p></h5>";
-
-      if (!isset($_SESSION['user_email'])) {
-        // include('./users_area/user_login.php');
-        echo "<a href='./users_area/user_login.php' class='btn custom-button'>Add to Cart</a>";
-      } else {
-        // include('payment.php');
-        echo " <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a> ";
-      }
-
-      echo "<a href='productDetails.php?product_id=$product_id' class='btn custom-view-button mx-2'>View More</a>
+  if(!isset($_GET['category'])){
+  $select_query="Select * from products order by rand() limit 0,8";
+          $result_query=mysqli_query($conn, $select_query);
+          while($row=mysqli_fetch_assoc($result_query)){
+            $product_id=$row['product_id'];
+            $product_title=$row['product_title'];
+            $product_description=$row['product_description'];
+            $product_image=$row['product_image'];
+            $product_price=$row['product_price'];
+            echo "<div class='col-md-3'>
+        <div class='card'>
+          <img src='./admin_area/product_images/$product_image' class='card-img-top' alt='$product_title'>
+          <div class='card-body'>
+            <h5 class='card-title'>$product_title</h5>
+            <p class='card-text'>$product_description</p>
+            <h5><p class='card-text'>Rs. $product_price</p></h5>
+            <a href='index.php?add_to_cart=$product_id' class='btn custom-button'>Add to Cart</a>
+            <a href='productDetails.php?product_id=$product_id' class='btn custom-view-button'>View More</a>
           </div>
-          </div>
-          </div>";
-    }
-  }
+        </div>
+        </div>";
+          }
+        }
 }
 
 //get all products
@@ -61,7 +52,7 @@ function getAllProducts()
               <p class='card-text'>$product_description</p>
               <h5><p class='card-text'>Rs. $product_price</p></h5>";
 
-      if (!isset($_SESSION['user_email'])) {
+      if (!isset($_SESSION['username'])) {
         // include('./users_area/user_login.php');
         echo "<a href='./users_area/user_login.php' class='btn custom-button'>Add to Cart</a>";
       } else {
@@ -106,7 +97,7 @@ function getUniqueCategories()
               <p class='card-text'>$product_description</p>
               <h5><p class='card-text'>Rs. $product_price</p></h5>";
 
-      if (!isset($_SESSION['user_email'])) {
+      if (!isset($_SESSION['username'])) {
         // include('./users_area/user_login.php');
         echo "<a href='./users_area/user_login.php' class='btn custom-button'>Add to Cart</a>";
       } else {
@@ -151,7 +142,7 @@ function searchProducts()
               <p class='card-text'>$product_description</p>
               <h5><p class='card-text'>Rs. $product_price</p></h5>";
 
-      if (!isset($_SESSION['user_email'])) {
+      if (!isset($_SESSION['username'])) {
         // include('./users_area/user_login.php');
         echo "<a href='./users_area/user_login.php' class='btn custom-button'>Add to Cart</a>";
       } else {
@@ -200,7 +191,7 @@ function viewMore()
                 <div>
                 <p class='text-start'>$product_description</p>
                 </div>";
-                if (!isset($_SESSION['user_email'])) {
+                if (!isset($_SESSION['username'])) {
                   // include('./users_area/user_login.php');
                   echo "<a href='./users_area/user_login.php' class='btn custom-button'>Add to Cart</a>";
                 } else {
@@ -279,6 +270,39 @@ function cartItem()
     echo $count_cart_items;
   }
 
+}
+
+//get user order details
+function user_order_details(){
+  global $conn;
+  $username = $_SESSION['username'];
+  $get_details="Select * from `user_table` where username='$username'";
+  $result_query=mysqli_query($conn, $get_details);
+  while($row_query=mysqli_fetch_array($result_query)){
+    $user_id=$row_query['user_id'];
+    if(!isset($_GET['edit_account'])){
+      if(!isset($_GET['my_orders'])){
+        if(!isset($_GET['delete_account'])){
+          $get_orders="Select * from `user_orders` where user_id=$user_id and order_status='pending'";
+          $result_orders=mysqli_query($conn, $get_orders);
+          $row_count=mysqli_num_rows($result_orders);
+          if($row_count>0){
+            echo "
+            <h3 class='text-center'>My All Orders</h3>
+            ";
+          }
+          else{
+            echo "<h3 class='text-center'>You have zero orders.</h3>
+            <p class='text-center'>You will find a lost of interesting products on our 'Shop' page.
+            <br>
+            <a href='../displayProducts.php' class='custom-button'>Explore Products</a>
+            </p>
+            ";
+          }
+        }
+      }
+    }
+  }
 }
 
 

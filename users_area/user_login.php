@@ -1,6 +1,7 @@
     <?php
 include('../database/connect.php');
 include_once('../functions/functions.php');
+@session_start();  //only if this page is activated then only starting the session.
     ?>
     
     <!DOCTYPE html>
@@ -88,7 +89,6 @@ if(isset($_POST['userLogin'])){
     $user_password = $_POST['user_password'];
 
     //sql query
-
     $select_query="Select * from `user_table` where username='$userName'";
     $result=mysqli_query($conn, $select_query);
 
@@ -101,16 +101,20 @@ if(isset($_POST['userLogin'])){
     $select_query_cart="Select * from `cart` where ip_address='$user_ip'";
     $select_cart=mysqli_query($conn, $select_query_cart);
     $rows_cart_count=mysqli_num_rows($select_cart);
+    
 
     if($rows_count>0){
+        $_SESSION['username']=$userName;
         if(password_verify($user_password, $row_data['user_password'])){
             if($rows_count==1 and $rows_cart_count==0){
+                $_SESSION['username']=$userName;
                 echo "<script>alert('Logged in Successfully')</script>";
                 echo "<script>window.open('users_area/profile.php', '_self')</script>";
             }
             else{
+                $_SESSION['username']=$userName;
                 echo "<script>alert('Logged in Successfully')</script>";
-                echo "<script>window.open('users_area/payment.php', '_self')</script>";
+                echo "<script>window.open('/webTechProject/index.php', '_self')</script>";
             }
         }else{
             echo "<script>alert('Invalid Credentials')</script>";
